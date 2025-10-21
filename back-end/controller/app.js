@@ -1,13 +1,10 @@
 import express from "express";
-import "dotenv/config.js";
-import Login from "./public/login.js";
-import Cadastro from "./public/cadastro.js";
-import Usuarios from "./private/usuarios.js";
+import Login from "../routes/public/login.js";
+import Cadastro from "../routes/public/cadastro.js";
+import Usuarios from "../routes/private/usuarios.js";
 import auth from "../middlewares/auth.js";
 
 const app = express();
-const PORT = process.env.PORT || 3000;
-
 app.use(express.json());
 
 const publicRoutes = express.Router();
@@ -29,6 +26,4 @@ app.use((error, req, res, next) => {
   res.status(500).json({ message: "Ocorreu um erro interno no servidor." });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+export default app;
